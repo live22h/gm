@@ -11,11 +11,13 @@
         <%= f.association :theme, label: 'Область деятельности проекта', include_blank: false, label_method: :theme %>
       </div>
       <div class="cell small-12 medium-6">
-        <div class="grid-x">
+        <div class="grid-x grid-margin-x">
           <div class="cell small-6">
             <%= f.input :deadline, as: :string, label: 'Дата исполнения', required: true, :placeholder => "Дата исполнения" %>
           </div>
-          <div class="cell small-6">Цена</div>
+          <div class="cell small-6">
+            <%= f.input :cost, as: :string, label: 'Стоимость работ' %>
+          </div>
         </div>
       </div>
       <div class="cell small-12 medium-6">
@@ -50,5 +52,6 @@ $("#order_picture").change(function(){
 
 $.datetimepicker.setLocale('ru');
 $('#order_deadline').datetimepicker({lang: 'ru', timepicker: false, format: 'd/m/Y', formatDate: 'Y/m/d', minDate: '<%= Date.today + 1 %>'});
+$("#order_cost").mask('000.000.000.000.000,00', {reverse: true});
 
 </script>
