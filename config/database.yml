@@ -1,4 +1,4 @@
-# Р’ РєРѕРЅСЃРѕР»Рё mysql: ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'vbmjse3Tll';
+# В консоли mysql: ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'vbmjse3Tll';
 
 # MySQL. Versions 5.1.10 and up are supported.
 #
@@ -58,4 +58,4 @@ production:
   <<: *default
   database: gimnet
   username: gimnet
-  password: <%= ENV['BSD_DATABASE_PASSWORD'] %>
+  password: vbmjse3Tllk

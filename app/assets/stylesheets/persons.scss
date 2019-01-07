@@ -1,3 +1,21 @@
-// Place all the styles related to the persons controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.project_image {
+  height: 3rem;
+  width: auto;
+  img {
+    height: 3rem;
+    width: auto;
+  }
+}
+.project {
+  text-decoration: none;
+  opacity: 0.8;
+  cursor: pointer;
+  color: black;
+  &:hover {
+    opacity: 1;
+  }
+
+  a {
+    color: black;
+  }
+}

@@ -1,25 +1,26 @@
-<p id="notice"><%= notice %></p>
+<%= render file: 'template/header' %>
 
-<h1>Orders</h1>
+<div class="grid-container">
+  <div class="cell small-12">
+<h1>Проекты</h1>
+</div>
+<div class="cell small-12">
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% @orders.each do |order| %>
+    <div class="grid-x grid-margin-x project">
 
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <div class="cell small-6 medium-2">
+        <div class="project_image">
+          <%= image_tag(order.picture_url) if order.picture? %>
+        </div>
+      </div>
+      <div class="cell small-6 medium-2"><%= order.cost %>руб.<br><%= order.deadline %></div>
+      <div class="cell small-12 medium-7"><%= order.description %></div>
+      <div class="small-12">
+        <hr>
+      </div>
+    </div>
+<% end %>
+</div>
 
-<br>
-
-<%= link_to 'New Order', new_order_path %>
+</div>

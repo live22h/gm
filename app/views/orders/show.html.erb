@@ -1,4 +1,67 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<%= render file: 'template/header' %>
+<div class="grid-container">
+<div class="grid-x grid-margin-x callout">
+  <div class="cell small-12 medium-6">
+    <%= image_tag(@order.picture_url) if @order.picture? %>
+  </div>
+  <div class="cell small-12 medium-6">
+    <div class="grid-x">
+      <div class="cell small-12">
+        <h5>
+        <%= @order.theme.theme %>
+        </h5>
+    </div>
+      <div class="cell small-12"><%= @order.description %></div>
+      <div class="cell small-12">Стоимость реализации проекта: <%= @order.cost %> руб.</div>
+      <div class="cell small-12">Дата завершения: <%= @order.deadline %></div>
+      <div class="cell small-12"><hr></div>
+      <div class="cell small-12">
+        Разместил проект: <%= "#{@order.user.email} #{@order.user.name} #{@order.user.fam}" %><br>
+        Индекс репутации: <b>Нужна формула и статистика по пользователям</b>
+      </div>
+      <div class="cell small-12">
+        <br><h6>Исполнители</h6>
+      </div>
+      <div class="cell small-12">
+        <div class="grid-x">
+        <% @my_specialists.each do |s| %>
+          <div class="cell small-6">
+            <%= s.user.email %>
+          </div>
+          <div class="cell small-6">
+            <% if s.done %>
+              Завершено
+            <% else %>
+              В работе
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      </div>
+      <div class="cell small-12"><br>
+        <% if !@order.isCandidate(current_user) && !@order.isOwner(current_user) %>
+          <%= render file: 'specialists/_form' %>
+        <% else %>
+          <% if !@order.isOwner(current_user) %>
+            <b>Вы подали заявку на участие в проекте</b>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<h5>Обсуждение проекта</h5>
+  <% @order.messages.each do |message| %>
+  <div class="grid-x callout">
+    <div class="cell small-12"><%= message.created_at %>, <%= message.user.email %></div>
+    <div class="cell small-12"><%= message.message %></div>
+  </div>
+  <% end %>
+<div class="grid-x">
+  <div class="cell small-12">
+    <% if user_signed_in? %>
+      <%= render file: 'messages/_form' %>
+    <% end %>
+  </div>
+</div>
+</div>

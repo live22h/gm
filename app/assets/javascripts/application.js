@@ -12,12 +12,10 @@
 //
 //= require jquery
 //= require rails-ujs
-//= jquery.mask.min
+//= require jquery.mask.min
 //= require activestorage
-//= require turbolinks
 //= require foundation
-
-require_tree .
+//= require_tree .
 
 $(function(){
     $(window).load(function() {

@@ -2,21 +2,26 @@
 
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    @title = "Авторизоваться на сайте"
+    resource.class == User
+    home_index_path
+    super
+  end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    @title = "Регистрация"
+    super
+  end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    request.referrer
+    super
+  end
+
 
   # protected
 
@@ -24,4 +29,5 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
 end

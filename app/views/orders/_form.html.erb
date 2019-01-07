@@ -1,4 +1,4 @@
-
+<%= render file: 'template/header' %>
 <%= simple_form_for(@order) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -6,7 +6,8 @@
   <div class="form-inputs">
     <div class="grid-container">
 
-    <div class="grid-x">
+    <div class="grid-x grid-margin-x">
+      <div class="cell small-12"><h1><%= @title %></h1></div>
       <div class="cell small-12">
         <%= f.association :theme, label: 'Область деятельности проекта', include_blank: false, label_method: :theme %>
       </div>
@@ -18,6 +19,9 @@
           <div class="cell small-6">
             <%= f.input :cost, as: :string, label: 'Стоимость работ' %>
           </div>
+          <div class="cell small-12">
+            <%= f.input :description, label: 'Описание проекта', input_html: { rows: 4 } %>
+          </div>
         </div>
       </div>
       <div class="cell small-12 medium-6">
@@ -26,13 +30,16 @@
         </div>
         <%= f.file_field :picture, input_html: {class: 'show-for-sr' }  %>
       </div>
+      <div class="cell small-12 medium-6">
+      <div class="form-actions">
+        <%= f.button :submit, 'Готово' %>
+      </div>
+    </div>
+
     </div>
   </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
 <% end %>
 
 <%= render file: 'template/datepicker' %>

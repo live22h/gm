@@ -1,12 +1,15 @@
-<div class="grid-x">
-  <div class="cell small-6">
-    <div class="logo">
-      <%= inline_svg "logo.svg" %>
+<div class="grid-x small-header">
+  <div class="cell small-12 medium-3">
+    <div class="small-logo">
+      <%= link_to root_path do %>
+        <%= inline_svg "logo.svg" %>
+      <% end %>
     </div>
   </div>
-  <div class="cell small-6 text-right">
-    <div style="margin-right: 5px;">
+  <div class="cell small-12 medium-6">
+    <%= render file: "template/search" %>
+  </div>
+  <div class="cell small-12 medium-3">
       <%= render file: 'template/login-form.html.erb' %>
-    </div>
   </div>
 </div>

@@ -1,2 +1,76 @@
-<h1>Persons#profile</h1>
-<p>Find me in app/views/persons/profile.html.erb</p>
+<%= render file: 'template/header' %>
+<a href="<%= new_order_path %>" class="button">Создать проект</a>
+<ul class="tabs" data-tabs="data-tabs" id="example-tabs">
+  <li class="tabs-title is-active">
+    <a href="#panel1" aria-selected="true">Мои проекты</a>
+  </li>
+  <li class="tabs-title">
+    <a data-tabs-target="panel2" href="#panel2">Участвую в проектах</a>
+  </li>
+  <li class="tabs-title">
+    <a data-tabs-target="panel3" href="#panel3">Заявки на участие в моих проектах</a>
+  </li>
+</ul>
+<div class="tabs-content" data-tabs-content="example-tabs">
+  <div class="tabs-panel is-active" id="panel1">
+      <% @my_projects.each do |order| %>
+      <div class="grid-x grid-margin-x project">
+
+        <div class="cell small-6 medium-2">
+          <div class="project_image">
+            <%= image_tag(order.picture_url) if order.picture? %>
+          </div>
+        </div>
+        <div class="cell small-6 medium-2"><%= order.cost %>руб.<br><%= order.deadline %></div>
+        <div class="cell small-12 medium-7"><%= order.description %></div>
+        <div class="cell small-12 medium-1 edit-controls">
+          <%= link_to order do %>
+            <i class="fa fa-eye">&nbsp;</i>
+          <% end %>
+          <%= link_to edit_order_path(order) do %>
+            <i class="fa fa-pencil">&nbsp;</i>
+          <% end %>
+          <%= link_to order, method: :delete, data: { confirm: 'Удалить проект?' } do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        </div>
+        <div class="small-12">
+          <hr>
+        </div>
+      </div>
+<% end %>
+</div>
+<div class="tabs-panel" id="panel2">
+  <div class="grid-x">
+    <% @my_works.each do |w| %>
+    <div class="cell small-12 medium-2">
+      <%= w.created_at  %>
+    </div>
+    <div class="cell small-12 medium-9">
+    <%= w.order.description %> <br>
+    </div>
+    <div class="cell small-12 medium-1">
+      <%= link_to 'Завершить', done_specialist_path(w), :class => "button" %>
+    </div>
+    <% end %>
+  </div>
+</div>
+<div class="tabs-panel" id="panel3">
+  <div class="grid-x">
+  <% @specialists.each do |s| %>
+    <div class="cell small-12 medium-2">
+      <%= s.created_at  %>
+    </div>
+    <div class="cell small-12 medium-3">
+      <%= s.user.email %>
+    </div>
+    <div class="cell small-12 medium-6">
+    <%= s.order.description %> <br>
+    </div>
+    <div class="cell small-12 medium-1">
+      <%= link_to 'Принять', accepted_specialist_path(s), :class => "button" %>
+    </div>
+  <% end %>
+</div>
+</div>
+</div>

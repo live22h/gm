@@ -1,1 +1,10 @@
-<input type="search" name="search" placeholder="Найти.." class="animated-search-form">
+<%= search_form_for @search do |f| %>
+  <div class="grid-x">
+    <div class="cell small-10">
+      <%= f.text_field :description_cont_any, required: true, placeholder: "Введите ключевые слова для поиска" %>
+    </div>
+    <div class="cell small-2">
+      <%= f.submit "Найти", class: "button" %>
+    </div>
+  </div>
+<% end %>
